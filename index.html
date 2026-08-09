@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#150303" />
+  <title>Hellroach — a cursed flappy parody</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪳</text></svg>" />
+  <!-- cache-buster: bump the v= on any asset you edit, so browsers that ignore
+       Cache-Control (e.g. embedded preview webviews) pick up the change -->
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game"></canvas>
+
+    <!-- live HUD -->
+    <div id="hud" class="hidden">
+      <div id="score">0</div>
+      <div id="disco-meter"><div id="disco-meter-fill"></div></div>
+      <div id="disco-badge" class="off">🪩 5 pts to disco</div>
+      <button id="disco-btn" class="fab locked" aria-label="Activate disco slow-mo">🕺</button>
+      <button id="mute-btn" class="fab" aria-label="Toggle sound">🔊</button>
+    </div>
+
+    <!-- start screen -->
+    <div id="start-screen" class="screen">
+      <div class="panel">
+        <h1 class="title">HELL<span>ROACH</span></h1>
+        <p class="sub">a cursed flappy parody</p>
+        <div class="stat-row">BEST <b id="start-best">—</b> <span class="dot">·</span> AVG <b id="start-avg">—</b></div>
+        <button id="start-btn" class="big-btn">▶ START FLAPPING</button>
+        <p class="hint">SPACE / CLICK / TAP — flap</p>
+        <p class="hint">D — disco (pass 5 sunflowers to charge it) &nbsp;·&nbsp; M — mute</p>
+        <p class="credit">music: built-in synth loop · disco track: assets/disco-music.mp3</p>
+      </div>
+    </div>
+
+    <!-- game over screen -->
+    <div id="over-screen" class="screen hidden">
+      <div class="panel">
+        <h2 class="over-title">ROACHED!</h2>
+        <div class="final-score"><span id="final-score">0</span></div>
+        <div class="stat-row">BEST <b id="over-best">—</b> <span class="dot">·</span> AVG <b id="over-avg">—</b></div>
+        <button id="retry-btn" class="big-btn">↻ RETRY</button>
+        <p class="hint">SPACE / CLICK / TAP — retry</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js?v=1"></script>
+  <script src="js/assets.js?v=1"></script>
+  <script src="js/sprites.js?v=1"></script>
+  <script src="js/audio.js?v=1"></script>
+  <script src="js/background.js?v=1"></script>
+  <script src="js/game.js?v=1"></script>
+</body>
+</html>

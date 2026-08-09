@@ -1,0 +1,273 @@
+/* Hellroach — theme. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #0a0101;
+  font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 0 60px rgba(255, 60, 10, 0.25), 0 0 8px rgba(0, 0, 0, 0.8);
+  touch-action: none;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------- HUD -- */
+
+#hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#score {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 160, 40, 0.8);
+  letter-spacing: 2px;
+}
+
+/* disco charge meter */
+
+#disco-meter {
+  position: absolute;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 132px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+#disco-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff4fd8, #8f6bff);
+  box-shadow: 0 0 10px #ff4fd8;
+  transition: width 0.25s;
+}
+
+#disco-meter.ready #disco-meter-fill { animation: meter-pulse 0.8s ease-in-out infinite; }
+#disco-meter.on { border-color: #ff4fd8; box-shadow: 0 0 14px #ff4fd8; }
+
+@keyframes meter-pulse {
+  50% { filter: brightness(1.7); }
+}
+
+#disco-badge {
+  position: absolute;
+  top: 16px;
+  right: 60px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#disco-badge.off { opacity: 0.55; }
+#disco-badge.off:hover { opacity: 1; }
+
+#disco-badge.on {
+  border-color: #ff4fd8;
+  color: #ffe9ff;
+  background: rgba(60, 0, 60, 0.7);
+  box-shadow: 0 0 18px #ff4fd8, inset 0 0 12px rgba(255, 79, 216, 0.5);
+  animation: badge-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes badge-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+#disco-badge.shake { animation: badge-shake 0.18s linear 2; }
+
+.fab {
+  position: absolute;
+  pointer-events: auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.fab:hover { transform: scale(1.1); }
+.fab:active { transform: scale(0.92); }
+
+.fab.locked { opacity: 0.35; filter: grayscale(0.75); pointer-events: auto; }
+.fab.active { border-color: #ff4fd8; box-shadow: 0 0 16px #ff4fd8; background: rgba(60, 0, 60, 0.7); }
+
+#disco-btn { bottom: 18px; left: 18px; }
+#mute-btn { bottom: 18px; right: 18px; }
+
+/* ---------------------------------------------------------- screens -- */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 120%, rgba(80, 10, 4, 0.55), rgba(5, 0, 0, 0.72));
+}
+
+.hidden { display: none !important; }
+
+.panel {
+  text-align: center;
+  padding: 26px 34px;
+  max-width: 86%;
+  animation: panel-in 0.4s ease-out;
+}
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.title {
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: 4px;
+  color: #ffd23f;
+  text-shadow: 0 4px 0 #7a1d09, 0 0 30px rgba(255, 120, 20, 0.9);
+  animation: title-flicker 3.2s ease-in-out infinite;
+}
+
+.title span { color: #ff7a1a; text-shadow: 0 4px 0 #5a1006, 0 0 30px rgba(255, 160, 40, 0.9); }
+
+@keyframes title-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.7; }
+  94% { opacity: 1; }
+  97% { opacity: 0.85; }
+  98% { opacity: 1; }
+}
+
+.sub {
+  margin: 8px 0 14px;
+  color: #ffb980;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+
+.stat-row {
+  margin: 14px 0 20px;
+  color: #d8c3b0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.stat-row b {
+  color: #fff;
+  font-size: 19px;
+  margin: 0 4px;
+  text-shadow: 0 0 10px rgba(255, 160, 40, 0.7);
+}
+
+.dot { opacity: 0.5; margin: 0 6px; }
+
+.big-btn {
+  display: block;
+  margin: 0 auto 14px;
+  padding: 16px 34px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: inherit;
+  color: #2a0d02;
+  background: linear-gradient(180deg, #ffd23f, #ff8a1a);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #8a3a06, 0 0 24px rgba(255, 160, 30, 0.65);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.big-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #8a3a06, 0 0 30px rgba(255, 160, 30, 0.85); }
+.big-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #8a3a06; }
+
+.hint {
+  margin-top: 6px;
+  color: #a0806a;
+  font-size: 12.5px;
+  letter-spacing: 1.5px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+
+.credit {
+  margin-top: 16px;
+  color: #6e5548;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.over-title {
+  font-size: 44px;
+  letter-spacing: 3px;
+  color: #ff5a3c;
+  text-shadow: 0 4px 0 #5a1006, 0 0 26px rgba(255, 60, 30, 0.9);
+  animation: title-flicker 2.4s ease-in-out infinite;
+}
+
+.final-score {
+  margin: 10px 0 4px;
+  font-size: 74px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.6), 0 0 26px rgba(255, 200, 60, 0.9);
+}
+
+@media (max-width: 520px) {
+  .title { font-size: 48px; }
+  .final-score { font-size: 60px; }
+  #score { font-size: 42px; }
+}

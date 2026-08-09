@@ -1,0 +1,10 @@
+# Freebuff app internals (local state, run docs)
+.freebuff/
+
+# OS / editor junk
+.DS_Store
+*.log
+
+# Python
+__pycache__/
+*.pyc
