@@ -8,9 +8,8 @@ from `file://`.
 ## Run it
 
 
-```bash
+
 Hosted: 
-```
 ```bash
 https://tahiyya19.github.io/Hell-Roach/
 ```
