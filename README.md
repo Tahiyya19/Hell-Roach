@@ -7,10 +7,10 @@ from `file://`.
 
 ## Run it
 
-Just open `index.html`, or serve the folder:
 
 ```bash
-Hosted: https://tahiyya19.github.io/Hell-Roach/
+Hosted: 
+https://tahiyya19.github.io/Hell-Roach/
 ```
 
 ## Controls
