@@ -10,8 +10,7 @@ from `file://`.
 Just open `index.html`, or serve the folder:
 
 ```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
+Hosted: https://tahiyya19.github.io/Hell-Roach/
 ```
 
 ## Controls
